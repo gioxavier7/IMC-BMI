@@ -147,7 +147,9 @@ fun UserDataScreen() {
                                     containerColor = Color(color = 0xff141A6B)
                                 )
                             ) {
-                                Text(text = stringResource(R.string.male))
+                                Text(
+                                    text = stringResource(R.string.male)
+                                )
                             }
                         }
                         Column(
@@ -178,7 +180,9 @@ fun UserDataScreen() {
                                     containerColor = Color(color = 0xff141A6B)
                                 )
                             ) {
-                                Text(text = stringResource(R.string.female))
+                                Text(
+                                    text = stringResource(R.string.female)
+                                )
                             }
                         }
                     }
@@ -189,8 +193,8 @@ fun UserDataScreen() {
                     ) {
                         OutlinedTextField(
                             value = inputAge.value,
-                            onValueChange = {nome ->
-                                inputAge.value = nome
+                            onValueChange = {
+                                nome -> inputAge.value = nome
                             },
                             modifier = Modifier
                                 .fillMaxWidth(),
@@ -219,14 +223,18 @@ fun UserDataScreen() {
                         )
                         OutlinedTextField(
                             value = inputWeight.value,
-                            onValueChange = {nome ->
-                                inputWeight.value = nome
+                            onValueChange = {
+                                nome -> inputWeight.value = nome
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 12.dp),
                             shape = RoundedCornerShape(16.dp),
-                            label = { Text(text = stringResource(R.string.peso)) },
+                            label = {
+                                Text(
+                                    text = stringResource(R.string.peso)
+                                )
+                            },
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.Balance,
@@ -246,22 +254,26 @@ fun UserDataScreen() {
                         )
                         OutlinedTextField(
                             value = inputHeight.value,
-                            onValueChange = {nome ->
-                                inputHeight.value = nome
+                            onValueChange = {
+                                nome -> inputHeight.value = nome
                             },
                             modifier = Modifier
                                 .fillMaxWidth(),
                             shape = RoundedCornerShape(16.dp),
-                            label = { Text(text = stringResource(R.string.altura)) },
+                            label = {
+                                Text(
+                                    text = stringResource(R.string.altura)
+                                )
+                            },
                             leadingIcon = {
                                 Icon(
-                                    imageVector = Icons.Default.Height,
+                                    imageVector = Icons.Default.Height ,
                                     contentDescription = "",
                                     tint = Color(color = 0xff141A6B)
                                 )
                             },
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Decimal,
+                                keyboardType = KeyboardType.Number,
                                 imeAction = ImeAction.Done
                             ),
                             colors = OutlinedTextFieldDefaults.colors(
