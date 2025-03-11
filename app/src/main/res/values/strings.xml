@@ -5,4 +5,10 @@
     <string name="next">Next</string>
     <string name="logo">Application Logo</string>
     <string name="hi">Hi!</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="idade">Age</string>
+    <string name="peso">Weight</string>
+    <string name="altura">Height</string>
+    <string name="calculate">Calculate</string>
 </resources>
