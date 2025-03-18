@@ -117,7 +117,6 @@ fun UserDataScreen() {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-
                     ) {
                         Column(
                             modifier = Modifier
