@@ -20,5 +20,5 @@
     <string name="weightValue">54Kg</string>
     <string name="high">High</string>
     <string name="highValue">1,68cm</string>
-    <string name="newCalculate">New Calc</string>
+    <string name="newCalculate">New Calculate</string>
 </resources>
