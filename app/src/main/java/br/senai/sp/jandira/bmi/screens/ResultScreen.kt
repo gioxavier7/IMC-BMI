@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,6 +39,16 @@ import br.senai.sp.jandira.bmi.R
 
 @Composable
 fun BMIResultScreen(controleDeNavegacao: NavHostController?) {
+
+    val context = LocalContext.current
+
+    val userFile = context.getSharedPreferences("user_file", Context.MODE_PRIVATE)
+
+    val userAge = userFile.getInt("user_age", 0)
+    val userWeight = userFile.getInt("user_weight", 0)
+    val userHeight = userFile.getInt("user_height", 0)
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -149,7 +161,7 @@ fun BMIResultScreen(controleDeNavegacao: NavHostController?) {
                                     fontSize = 20.sp
                                 )
                                 Text(
-                                    text = stringResource(R.string.ageValue),
+                                    text = "$userAge",
                                     color = Color.Black,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 20.sp
@@ -168,7 +180,7 @@ fun BMIResultScreen(controleDeNavegacao: NavHostController?) {
                                     fontSize = 20.sp
                                 )
                                 Text(
-                                    text = stringResource(R.string.weightValue),
+                                    text = "$userWeight",
                                     color = Color.Black,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 20.sp
@@ -187,7 +199,7 @@ fun BMIResultScreen(controleDeNavegacao: NavHostController?) {
                                     fontSize = 20.sp
                                 )
                                 Text(
-                                    text = stringResource(R.string.highValue),
+                                    text = "$userHeight",
                                     color = Color.Black,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 20.sp

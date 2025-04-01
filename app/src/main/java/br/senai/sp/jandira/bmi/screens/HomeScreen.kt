@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -44,6 +46,15 @@ fun HomeScreen(controleDeNavegacao: NavHostController?) {
     var nomeState = remember {
         mutableStateOf(value = "")
     }
+
+    //obtendo o contexto da tela atual
+    val context = LocalContext.current
+
+    // abrir ou criar um arquivo SharedPreferences
+    val userFile = context.getSharedPreferences("user_file", Context.MODE_PRIVATE)
+
+    //criamos um editor responsável por editar o arquivo
+    val editor = userFile.edit()
 
     Box(
         modifier = Modifier
@@ -136,6 +147,8 @@ fun HomeScreen(controleDeNavegacao: NavHostController?) {
                         )
                     }
                     Button(onClick = {
+                        editor.putString("user_name", nomeState.value)
+                        editor.apply()
                         controleDeNavegacao?.navigate("user_data")
                     },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF141A6B))) {

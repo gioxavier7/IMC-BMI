@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -62,6 +64,19 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
         mutableStateOf(value = "")
     }
 
+    val selectColorState = remember {
+        mutableStateOf(Color(color = 0xFF181A4F))
+    }
+
+    val context = LocalContext.current
+
+    val userFile = context.getSharedPreferences("user_file", Context.MODE_PRIVATE)
+
+    val userName = userFile.getString("user_name", "user not found")
+
+    //criamos um editor responsável por editar o arquivo
+    val editor = userFile.edit()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -84,7 +99,7 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = stringResource(R.string.hi),
+                    text = "${stringResource(R.string.hi)}, $userName!",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 25.sp
@@ -187,7 +202,7 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                         OutlinedTextField(
                             value = inputAge.value,
                             onValueChange = {
-                                nome -> inputAge.value = nome
+                               inputAge.value = it
                             },
                             modifier = Modifier
                                 .fillMaxWidth(),
@@ -217,7 +232,7 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                         OutlinedTextField(
                             value = inputWeight.value,
                             onValueChange = {
-                                nome -> inputWeight.value = nome
+                                inputWeight.value = it
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -248,7 +263,7 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                         OutlinedTextField(
                             value = inputHeight.value,
                             onValueChange = {
-                                nome -> inputHeight.value = nome
+                                inputHeight.value = it
                             },
                             modifier = Modifier
                                 .fillMaxWidth(),
@@ -278,6 +293,10 @@ fun UserDataScreen(controleDeNavegacao: NavHostController?) {
                     }
                     Button(
                         onClick = {
+                            editor.putInt("user_age", inputAge.value.toInt())
+                            editor.putInt("user_weight", inputWeight.value.toInt())
+                            editor.putInt("user_height", inputHeight.value.toInt())
+                            editor.apply()
                             controleDeNavegacao?.navigate("bmi_result")
                         },
                         modifier = Modifier
